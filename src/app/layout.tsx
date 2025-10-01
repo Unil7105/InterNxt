@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "InterNxt",
-  description: "A modern internship platform built with Next.js 14, designed to connect students with valuable internship opportunities.",
+  description: "A modern internship platform , designed to connect students with valuable internship opportunities.",
 };
 
 export default function RootLayout({
