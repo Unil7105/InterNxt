@@ -9,8 +9,7 @@ import {
   BookmarkCheck,
   Users,
   Calendar,
-  ExternalLink,
-  Star
+  ExternalLink
 } from 'lucide-react';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -60,52 +59,28 @@ export function InternshipCard({
     return `${diffDays} days left`;
   };
 
-  const getVerificationBadge = (status: string) => {
-    switch (status) {
-      case 'premium':
-        return (
-          <Badge className="bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full text-xs font-medium">
-            <Star className="h-3 w-3 mr-1" />
-            Premium
-          </Badge>
-        );
-      case 'trusted':
-        return (
-          <Badge className="bg-green-50 text-green-600 px-2 py-0.5 rounded-full text-xs font-medium">
-            ✓ Trusted
-          </Badge>
-        );
-      default:
-        return (
-          <Badge className="bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full text-xs font-medium">
-            Verified
-          </Badge>
-        );
-    }
-  };
 
   return (
-    <Card className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 group">
-      <CardHeader className="pb-3">
+    <Card className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group h-full flex flex-col">
+      <CardHeader className="pb-4">
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
             <Avatar className="h-12 w-12">
               <AvatarImage src={internship.company.logo} alt={internship.company.companyName} />
               <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
                 {internship.company.companyName.charAt(0)}
               </AvatarFallback>
             </Avatar>
-            <div className="flex-1 min-w-0">
-              <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+            <div className="min-w-0 flex-1">
+              <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
                 {internship.title}
               </CardTitle>
-              <CardDescription className="text-sm text-gray-600">
+              <CardDescription className="text-sm text-gray-600 truncate mt-1">
                 {internship.company.companyName}
               </CardDescription>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            {getVerificationBadge(internship.company.verificationStatus)}
+          <div className="flex items-center gap-2 flex-shrink-0">
             <Button
               variant="ghost"
               size="sm"
@@ -122,9 +97,9 @@ export function InternshipCard({
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex-1 flex flex-col">
         {/* Description */}
-        <p className="text-sm text-gray-600 line-clamp-2">
+        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
           {internship.description}
         </p>
 
@@ -162,26 +137,26 @@ export function InternshipCard({
         {/* Skills Required */}
         <div className="space-y-2">
           <p className="text-sm font-medium text-gray-700">Required Skills:</p>
-          <div className="flex flex-wrap gap-1">
-            {internship.requirements.slice(0, 3).map((skill, index) => (
+          <div className="flex flex-wrap gap-1.5">
+            {internship.requirements.slice(0, 4).map((skill, index) => (
               <Badge 
                 key={index}
                 variant="secondary" 
-                className="bg-gray-100 text-gray-700 px-2 py-0.5 text-xs"
+                className="bg-gray-100 text-gray-700 px-2.5 py-1 text-xs font-medium"
               >
                 {skill}
               </Badge>
             ))}
-            {internship.requirements.length > 3 && (
-              <Badge variant="secondary" className="bg-gray-100 text-gray-700 px-2 py-0.5 text-xs">
-                +{internship.requirements.length - 3} more
+            {internship.requirements.length > 4 && (
+              <Badge variant="secondary" className="bg-gray-100 text-gray-700 px-2.5 py-1 text-xs font-medium">
+                +{internship.requirements.length - 4} more
               </Badge>
             )}
           </div>
         </div>
 
         {/* Application Count */}
-        <div className="flex items-center gap-2 text-sm text-gray-500">
+        <div className="flex items-center gap-2 text-sm text-gray-500 mt-auto">
           <Users className="h-4 w-4" />
           <span>{internship.applications.length} applications</span>
         </div>
@@ -197,7 +172,7 @@ export function InternshipCard({
           </Button>
           <Button variant="outline" size="sm">
             <ExternalLink className="h-4 w-4 mr-2" />
-            View Details
+            <span className="hidden sm:inline">View Details</span>
           </Button>
         </div>
       </CardContent>

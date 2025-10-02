@@ -471,7 +471,7 @@ export default function HomePage() {
                   </Button>
                 </Link>
                 <Link href="/login">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 backdrop-blur text-base px-8 py-6">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-white  text-black hover:bg-white backdrop-blur text-base px-8 py-6">
                     Sign In
                   </Button>
                 </Link>
